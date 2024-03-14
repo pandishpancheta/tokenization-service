@@ -18,10 +18,8 @@ spec:
           ports:
             - containerPort: 50051
           envFrom:
-            - configMapRef:
-                name: tokenization-service-env-config
             - secretRef:
-                name: tokenization-service-env-secrets
+                name: tokenization_service_env_secrets
           resources:
             limits:
               memory: "512Mi"
