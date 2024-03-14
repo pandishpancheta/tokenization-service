@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tokenization-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tokenization-service
+  template:
+    metadata:
+      labels:
+        app: tokenization-service
+    spec:
+      containers:
+        - name: tokenization-service
+          image: tokenization-service-image:v1.0.0
+          ports:
+            - containerPort: 50051
+          envFrom:
+            - configMapRef:
+                name: tokenization-service-env-config
+            - secretRef:
+                name: tokenization-service-env-secrets
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "1"
+            requests:
+              memory: "512Mi"
+              cpu: "1"
