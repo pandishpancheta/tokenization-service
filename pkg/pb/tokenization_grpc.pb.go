@@ -43,19 +43,21 @@ func (c *tokenizationServiceClient) Tokenize(ctx context.Context, in *Tokenizati
 }
 
 // TokenizationServiceServer is the server API for TokenizationService service.
-// All implementations should embed UnimplementedTokenizationServiceServer
+// All implementations must embed UnimplementedTokenizationServiceServer
 // for forward compatibility
 type TokenizationServiceServer interface {
 	Tokenize(context.Context, *TokenizationRequest) (*TokenizationResponse, error)
+	mustEmbedUnimplementedTokenizationServiceServer()
 }
 
-// UnimplementedTokenizationServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedTokenizationServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedTokenizationServiceServer struct {
 }
 
 func (UnimplementedTokenizationServiceServer) Tokenize(context.Context, *TokenizationRequest) (*TokenizationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Tokenize not implemented")
 }
+func (UnimplementedTokenizationServiceServer) mustEmbedUnimplementedTokenizationServiceServer() {}
 
 // UnsafeTokenizationServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to TokenizationServiceServer will
