@@ -42,7 +42,7 @@ func (s *tokenizationService) Tokenize(ctx context.Context, req *tokenization.To
 	part, _ := writer.CreateFormFile("file", req.GetTokenId()+".jpeg")
 
 	// save file locally for testing
-	err := os.WriteFile("test.jpeg", chunks, 0644)
+	err := os.WriteFile("temp/test.jpeg", chunks, 0644)
 	if err != nil {
 		log.Fatalf("Failed to write file: %v", err)
 	}
