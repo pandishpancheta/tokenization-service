@@ -13,8 +13,8 @@ type Config struct {
 
 func LoadConfig() *Config {
 	return &Config{
-		PinataApiKey:       strings.TrimSpace(os.Getenv("PINATA_API_KEY")),
-		PinataSecretApiKey: strings.TrimSpace(os.Getenv("PINATA_SECRET_API_KEY")),
-		Port:               strings.TrimSpace(os.Getenv("PORT")),
+		PinataApiKey:       strings.TrimSuffix(os.Getenv("PINATA_API_KEY"), "\n"),
+		PinataSecretApiKey: strings.TrimSuffix(os.Getenv("PINATA_SECRET_API_KEY"), "\n"),
+		Port:               strings.TrimSuffix(os.Getenv("PORT"), "\n"),
 	}
 }
